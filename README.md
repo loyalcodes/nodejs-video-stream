@@ -6,9 +6,7 @@
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-   
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+
 
 ## Description
 
@@ -17,7 +15,8 @@
 ## Installation
 
 ```bash
-$ npm install
+# install dependencies
+$ npm 
 ```
 
 ## Running the app
@@ -49,7 +48,7 @@ $ npm run test:cov
 
 ## Stay in touch
 
-- Developed by Adaire - [Mathew Johannes](https://kamilmysliwiec.com)
-- Website - [https://www.adaire.com.na/](https://www.adaire.com.na//)
+- Developed by Adaire - [Mathew Johannes](https://www.adaire.com.na/)
+- GitHub - [https://github.com/loyalcodes](https://github.com/loyalcodes)
 
 
