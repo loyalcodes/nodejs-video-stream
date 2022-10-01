@@ -18,14 +18,17 @@ async function bootstrap() {
 
   //Handle streams
   process.on('SIGTERM', ()=>{
+    app.close().then(()=>{
+      console.log("Server shutdown...")
+    }).catch((error)=>console.log(`On server shutdown error ${error}`))
     console.log("SIGTERM recieved.")
+    process.exit(0)
   })
   process.on('SIGINT', ()=>{
     app.close().then(()=>{
       console.log("Server shutdown...")
     }).catch((error)=>console.log(`On server shutdown error ${error}`))
     console.log("SIGINT recieved.")
-    
     process.exit(0)
   })
 }
