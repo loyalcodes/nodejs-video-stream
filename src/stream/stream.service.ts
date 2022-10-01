@@ -2,16 +2,14 @@ import { Injectable, StreamableFile, Header, Headers, Res, HttpStatus, Get, NotF
 import { Response } from "express";
 import { statSync, createReadStream } from 'fs';
 import { join } from "path";
+import { Utils } from "src/utils/utils.media";
 
 //Inject the service
 @Injectable()
 export class StreamService {
     
     async start( @Headers() headers, @Res() res: Response){
-    const videoPath = join(process.cwd(), `./src/assets/video.mp4`)
-    if(!videoPath){
-        throw new NotFoundException(null, "Streamable file not found.")
-    }
+    const videoPath = new Utils().getMedia()
     const { size } = statSync(videoPath);
     const videoRange = headers.range;
     if (videoRange) {
