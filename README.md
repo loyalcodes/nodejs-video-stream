@@ -1,12 +1,13 @@
 ## Description
-
-[Video Streaming Service](https://github.com/nestjs/nest) A NodeJS video streaming service powered by NestJS
+A NodeJS video streaming service powered by NestJS
 
 ## Installation
 
 ```bash
+#clone repostory
+$ git clone https://github.com/loyalcodes/video-streaming-service.git
 # install dependencies
-$ npm 
+$ npm install
 ```
 
 ## Running the app
@@ -39,6 +40,5 @@ $ npm run test:cov
 ## Stay in touch
 
 - Developed by Adaire - [Mathew Johannes](https://www.adaire.com.na/)
-- GitHub - [https://github.com/loyalcodes](https://github.com/loyalcodes)
 
 
