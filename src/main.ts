@@ -1,14 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { Logger } from '@nestjs/common';
 
-const shutDownGracefully = () => process.exit(0)
 
 async function bootstrap() {
+  const logger = new Logger("Main");
+  const port = process.env.PORT || 3000;
   const app = await NestFactory.create(AppModule);
   app.enableShutdownHooks();// Starts listening for shutdown hooks
-  await app.listen(3000, ()=>{
-    console.log({
-      "serverPort":3000,
+  await app.listen(port, ()=>{
+    logger.log({
+      "serverStatus":"Running",
+      "serverPort":port,
       "processID": process.pid
     })
   });
