@@ -1,4 +1,4 @@
-import { Injectable, StreamableFile, Header, Headers, Res, HttpStatus, Get, NotFoundException } from "@nestjs/common";
+import { Injectable, StreamableFile, Header, Headers, Res, HttpStatus, Get, NotFoundException, OnApplicationShutdown } from "@nestjs/common";
 import { Response } from "express";
 import { statSync, createReadStream } from 'fs';
 import { join } from "path";
@@ -6,7 +6,11 @@ import { Utils } from "src/utils/utils.media";
 
 //Inject the service
 @Injectable()
-export class StreamService {
+export class StreamService implements OnApplicationShutdown{
+
+    onApplicationShutdown(signal: string) {
+        console.log(`signal recieved: ${signal}`); // e.g. "SIGINT"
+    }
     
     async start( @Headers() headers, @Res() res: Response){
     const videoPath = new Utils().getMedia()
