@@ -1,7 +1,9 @@
 import { Injectable, StreamableFile, Header, Headers, Res, HttpStatus, Get, NotFoundException, OnApplicationShutdown, Logger } from "@nestjs/common";
 import { Response } from "express";
 import { statSync, createReadStream } from 'fs';
+import { join } from "path";
 import { MediaUtils } from "src/utils/utils.media";
+const Transcoder = require('stream-transcoder');
 
 
 //Inject the service
@@ -18,6 +20,8 @@ export class StreamService implements OnApplicationShutdown{
     this.logger.verbose(`Started streaming for ${process.pid}`)
     const mediaUtils = new MediaUtils()
     const videoPath = mediaUtils.getMedia()
+    //const filePath = join(process.cwd(), `./src/assets/video.mp4`)
+    const newhh = createReadStream("video.mkv")
     const { size } = statSync(videoPath);
     const videoRange = headers.range;
     let parts: any, start: any, chunkSize: any, end: any = null;
@@ -33,6 +37,7 @@ export class StreamService implements OnApplicationShutdown{
       };
       res.writeHead(HttpStatus.PARTIAL_CONTENT, head); // Expose data to client
       readStreamfile.pipe(res);
+
       this.logger.verbose(`Current streaming data: ${JSON.stringify(
         {
             "parts": parts,

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming-k8s
+spec:
+  selector:
+    matchLabels:
+      app: video-streaming-k8s
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: video-streaming-k8s
+    spec: 
+     containers:
+      - name: video-streaming-k8s
+        image: loyalcodes/video-streaming-k8s
+        ports:
+          - containerPort: 3000
