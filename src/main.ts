@@ -4,11 +4,12 @@ import { Logger } from '@nestjs/common';
 
 
 async function bootstrap() {
+
   const logger = new Logger("Main");
   const port = process.env.PORT || 3000;
   const app = await NestFactory.create(AppModule);
   app.enableShutdownHooks();// Starts listening for shutdown hooks
-  await app.listen(port, ()=>{
+  const server = await app.listen(port, ()=>{
     logger.log({
       "serverStatus":"Running",
       "serverPort":port,
@@ -16,20 +17,20 @@ async function bootstrap() {
     })
   });
 
-  //Handle streams
-  process.on('SIGTERM', ()=>{
-    app.close().then(()=>{
-      console.log("Server shutdown...")
-    }).catch((error)=>console.log(`On server shutdown error ${error}`))
-    console.log("SIGTERM recieved.")
-    process.exit(0)
-  })
-  process.on('SIGINT', ()=>{
-    app.close().then(()=>{
-      console.log("Server shutdown...")
-    }).catch((error)=>console.log(`On server shutdown error ${error}`))
-    console.log("SIGINT recieved.")
-    process.exit(0)
+  //Handle Signals
+  const signals = ['SIGTERM', 'SIGQUIT', 'SIGINT']
+  signals.forEach(signal => {
+    process.on(signal, () => {
+      // Wait on other processes or connections to close or finish processing then stop server from accepting new requests
+      logger.log(`${signal} recieved...`)
+      server.close(function (err) {
+        if (err) {
+          logger.error(`${err} while shutting down application.`)
+          process.exit(1)
+        }
+        process.exit(0)
+      })
+    })
   })
 }
 bootstrap();

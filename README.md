@@ -1,5 +1,11 @@
 ## Description
-A NodeJS video streaming service powered by NestJS
+A NodeJS video streaming service powered by NestJS. The service convert and play .mp4 to .mkv file on fly 
+
+What is required from you?
+- Small video file. Should be under ./src/assets/ of application root folder (There is one for DEMO ;) ).  
+- Follow below installation
+
+The application can run in a container. See Docker + k8s guidance
 
 ## Installation
 
@@ -13,40 +19,30 @@ $ npm install
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 
 # application endpoint
 $ /stream
 
-#Running application local
-$ http://localhost:3000/stream
+$ application port: 3000
 
+#Running application locally
+$ http://localhost:3000/stream
 
 ```
 
 ## Test
 
 ```bash
-# unit tests
-$ npm run test
-
 # e2e tests
 $ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
 ```
 
 ## Docker
 ```bash
-# Run commands
+# Build Dockerfile
 FROM node:alpine AS development
 
 WORKDIR /usr/src/app
@@ -87,13 +83,26 @@ $ ./k8s/deployment.yaml
 $ ./k8s/service.yaml
 ```
 
-## Running Production Application
+## Running Live Application
 ``` bash
-# Via cluster public IP
+# Setting up your own docker and k8s environment
+$ Build docker file ./ Dockerfile ( Located at project Root )
+
+$ Deploy to k8s ./k8s/deployment.yaml, ./k8s/service.yaml ( All files located at ./k8s folder )
+
+$ Use your own managed k8s service | Hosting provider
+
+# Access deployed application, cluster public IP
 $ http://35.226.185.172:3000/stream
 ```
 
 ## Stay in touch
+
+- Developed by Adaire - [Mathew Johannes](https://www.adaire.com.na/)
+
+## License
+
+- No License
 
 - Developed by Adaire - [Mathew Johannes](https://www.adaire.com.na/)
 
