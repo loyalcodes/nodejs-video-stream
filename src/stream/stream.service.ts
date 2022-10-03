@@ -4,6 +4,8 @@ import { statSync, createReadStream } from 'fs';
 import { join } from "path";
 import { MediaUtils } from "src/utils/utils.media";
 const Transcoder = require('stream-transcoder');
+const ffmpeg = require('fluent-ffmpeg');
+
 
 
 //Inject the service
@@ -20,8 +22,6 @@ export class StreamService implements OnApplicationShutdown{
     this.logger.verbose(`Started streaming for ${process.pid}`)
     const mediaUtils = new MediaUtils()
     const videoPath = mediaUtils.getMedia()
-    //const filePath = join(process.cwd(), `./src/assets/video.mp4`)
-    const newhh = createReadStream("video.mkv")
     const { size } = statSync(videoPath);
     const videoRange = headers.range;
     let parts: any, start: any, chunkSize: any, end: any = null;
@@ -34,10 +34,11 @@ export class StreamService implements OnApplicationShutdown{
       const head = {
         'Content-Range': `bytes ${start}-${end}/${size}`,
         'Content-Length': chunkSize,
+        'Content-Type': 'video/mp4'
       };
       res.writeHead(HttpStatus.PARTIAL_CONTENT, head); // Expose data to client
       readStreamfile.pipe(res);
-
+      
       this.logger.verbose(`Current streaming data: ${JSON.stringify(
         {
             "parts": parts,
@@ -59,5 +60,6 @@ export class StreamService implements OnApplicationShutdown{
         }
       )}`)
     }
-  } 
+  }
+
 }

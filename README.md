@@ -21,6 +21,14 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+# application endpoint
+$ /stream
+
+#Running application local
+$ http://localhost:3000/stream
+
+
 ```
 
 ## Test
@@ -67,6 +75,22 @@ COPY . .
 COPY --from=development /usr/src/app/dist ./dist
 
 CMD ["node", "dist/main"]
+```
+
+
+## K8s
+``` bash
+# deployment file
+$ ./k8s/deployment.yaml
+
+# service file
+$ ./k8s/service.yaml
+```
+
+## Running Production Application
+``` bash
+# Via cluster public IP
+$ http://35.226.185.172:3000/stream
 ```
 
 ## Stay in touch
