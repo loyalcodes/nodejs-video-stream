@@ -1,6 +1,13 @@
 ## Description
 A NodeJS video streaming service powered by NestJS. The service convert and play .mp4 to .mkv file on fly 
 
+FEATURES:
+- Convert mp4 to mkv and stream on fly
+- Custom real-time logs ( write to flat file on memory or console ) on every process
+- Signal listeners [SIGNIT, SIGTERM]
+- Graceful shutdown
+- Container-based
+
 What is required from you?
 - Small video file. Should be under ./src/assets/ of application root folder (There is one for DEMO ;) ).  
 - Follow below installation
