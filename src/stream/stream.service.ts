@@ -4,6 +4,7 @@ import { statSync, createReadStream } from 'fs';
 import { join } from "path";
 import { MediaUtils } from "src/utils/utils.media";
 const Transcoder = require('stream-transcoder');
+const ffmpeg = require('fluent-ffmpeg');
 
 
 
@@ -37,9 +38,7 @@ export class StreamService implements OnApplicationShutdown{
       };
       res.writeHead(HttpStatus.PARTIAL_CONTENT, head); // Expose data to client
       readStreamfile.pipe(res);
-
       
-
       this.logger.verbose(`Current streaming data: ${JSON.stringify(
         {
             "parts": parts,
@@ -61,5 +60,6 @@ export class StreamService implements OnApplicationShutdown{
         }
       )}`)
     }
-  } 
+  }
+
 }
