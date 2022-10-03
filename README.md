@@ -1,6 +1,12 @@
 ## Description
 A NodeJS video streaming service powered by NestJS. The service convert and play .mp4 to .mkv file on fly 
 
+What is required from you?
+- Small video file. Should be under ./src/assets/ of application root folder (There is one for DEMO ;) ).  
+- Follow below installation
+
+The application can run in a container. See Docker + k8s guidance
+
 ## Installation
 
 ```bash
@@ -77,7 +83,7 @@ $ ./k8s/deployment.yaml
 $ ./k8s/service.yaml
 ```
 
-## Running Production Application
+## Running Live Application
 ``` bash
 # Setting up your own docker and k8s environment
 $ Build docker file ./ Dockerfile ( Located at project Root )
@@ -91,6 +97,12 @@ $ http://35.226.185.172:3000/stream
 ```
 
 ## Stay in touch
+
+- Developed by Adaire - [Mathew Johannes](https://www.adaire.com.na/)
+
+## License
+
+- No License
 
 - Developed by Adaire - [Mathew Johannes](https://www.adaire.com.na/)
 

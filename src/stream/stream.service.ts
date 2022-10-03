@@ -63,6 +63,7 @@ export class StreamService implements OnApplicationShutdown{
           readStreamfile.pipe(res);
           console.log(`parts: ${parts} start: ${start}`)
           logMessage(`parts: ${parts} start: ${start}`)
+          logMessage(`Chunk sent ${chunkSize}`)
 
         }else{
 
