@@ -4,7 +4,7 @@ import { Response } from "express";
 
 
 @Controller()
-export class StreamControler {
+export class StreamController {
  constructor(private readonly streamService: StreamService){}
     
     private logger = new Logger("StreamControler")
